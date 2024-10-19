@@ -32,7 +32,8 @@ public class AuthService
     private static ClaimsIdentity GenerateClaims(User user)
     {
         var claims = new ClaimsIdentity();
-        claims.AddClaim(new Claim(ClaimTypes.Name, user.Email));
+        claims.AddClaim(new Claim(ClaimTypes.Name, user.Name));
+        claims.AddClaim(new Claim(ClaimTypes.Email, user.Email));
 
         foreach (var role in user.Roles)
             claims.AddClaim(new Claim(ClaimTypes.Role, role));

@@ -18,7 +18,7 @@ public class S3StorageService (ILogger<S3StorageService> logger,IAmazonS3 amazon
         if (audioDTO.AudioFile.Length == 0) throw new Exception("the file has no length");
 
         var singers = await _singerRepository.GetSingersList(audioDTO.SingerId);
-        if (singers.Count == 0) throw new Exception("The singers Id's are not valid");
+        if (singers == null || singers.Count == 0) throw new Exception("The singers Id's are not valid");
 
         var bucket = Environment.GetEnvironmentVariable("AWS_BUCKET");
 
